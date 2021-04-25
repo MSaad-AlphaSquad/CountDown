@@ -2,26 +2,31 @@ import React, { useState, useEffect } from "react";
 import Form from "./Form";
 import EventCountdown from "./EventCountdown";
 
-const CountDown = () => {
+const App = () => {
     const [eventList , setEventList] = useState([]);
-    
+    const [warning , setWarning] = useState(false);
 
   const [event, setEvent] = useState({
     name: "",
     date: "",
   });
 
-  useEffect(() => {
-      console.log(eventList)
-  },[eventList]);
+  // useEffect(() => {
+  //     console.log(eventList)
+  // },[eventList]);
 
   const onInputChange = (e) => {
     setEvent({ ...event, [e.target.name]: e.target.value });
   };
 
   const onFormSubmit = (e) => {
+    if (new Date(event.date) >= new Date()){
     setEventList((prevValue) => [...prevValue, event])
-    setEvent({ name: "", date: ""});
+    setWarning(false)
+  } else {
+    setWarning(true);    
+  }
+  setEvent({ name: "", date: ""});
     e.preventDefault();
   };
 
@@ -29,12 +34,14 @@ const CountDown = () => {
   return (
     <div className="container mx-auto">
       <div className="flex justify-center">
-        <div className=" flex-shrink-0  m-32 md:w-[23rem] bg-gray-200 p-10 rounded-lg ">
+        <div className=" flex-shrink-0  m-32 md:w-[23rem] bg-red-700 p-10 rounded-lg ">
+        <h1 className="text-center text-2xl mb-7 text-white">Countdown</h1> 
           <Form
             onFormSubmit={onFormSubmit}
             name={event.name}
             onInputChange={onInputChange}
             date={event.date}
+            warning={warning}
           />
          { eventList.map((items,i) => (
            <React.Fragment key={i}>
@@ -48,4 +55,4 @@ const CountDown = () => {
   );
 };
 
-export default CountDown;
+export default App;

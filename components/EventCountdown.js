@@ -46,7 +46,7 @@ const EventCountdown = ({ data }) => {
     <div className="mt-10">
       {!timeUp && (
         <div>
-          <p>{eventInfo.name}</p>
+          <p className="text-white">{eventInfo.name}</p>
           <Timer
             months={formatNum(months)}
             days={formatNum(days)}
