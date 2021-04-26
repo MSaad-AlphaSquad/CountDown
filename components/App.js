@@ -35,6 +35,15 @@ const App = () => {
     e.preventDefault();
   };
 
+
+  const deleteEvent = (id) => {
+    setEventList(prevEventList => {
+      return prevEventList.filter((noteItem, index) => {
+        return index !== id;
+      });
+    });
+  }
+
   
   return (
     <div className="container mx-auto">
@@ -50,7 +59,7 @@ const App = () => {
           />
          { eventList.map((items,i) => (
            <React.Fragment key={i}>
-         <EventCountdown data={items}/>
+         <EventCountdown data={items} id={i} onDelete={deleteEvent}/>
          </React.Fragment>
          ))
          }
