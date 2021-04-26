@@ -5,15 +5,20 @@ import EventCountdown from "./EventCountdown";
 const App = () => {
     const [eventList , setEventList] = useState([]);
     const [warning , setWarning] = useState(false);
-
   const [event, setEvent] = useState({
     name: "",
     date: "",
   });
 
-  // useEffect(() => {
-  //     console.log(eventList)
-  // },[eventList]);
+  useEffect(() => {
+    if ( localStorage.getItem("eventList")){
+      setEventList(JSON.parse(localStorage.getItem("eventList")));
+  }
+  },[]);
+
+  useEffect(() => {
+    localStorage.setItem("eventList", JSON.stringify(eventList));
+  }, [eventList]);
 
   const onInputChange = (e) => {
     setEvent({ ...event, [e.target.name]: e.target.value });
