@@ -32,10 +32,12 @@ const EventCountdown = ({ data, id, onDelete }) => {
   };
 
   useEffect(() => {
+    if(timer.seconds <= -1){
+      setTimeUp(true);
+     }else{
     seteventInfo(data);
-    if(timer.seconds === -1){
-     setTimeUp(true);
-    }
+     }
+   
   }, [data, timer]);
 
   useEffect(() => {
