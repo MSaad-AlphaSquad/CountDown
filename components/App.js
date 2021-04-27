@@ -48,7 +48,7 @@ const App = () => {
   return (
     <div className="container mx-auto">
       <div className="flex justify-center">
-        <div className=" flex-shrink-0  m-32 md:w-[23rem] bg-red-700 p-10 rounded-lg ">
+        <div className=" flex-shrink-0 m-5 md:w-[23rem] bg-red-700 py-10 px-7 rounded-lg ">
         <h1 className="text-center text-2xl mb-7 text-white">Countdown</h1> 
           <Form
             onFormSubmit={onFormSubmit}
